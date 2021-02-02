@@ -1,0 +1,76 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pkg3a;
+
+/**
+ *
+ * @author babu
+ */
+abstract class X {
+    void deri() {
+        System.out.println("X deri()");
+    }
+
+    // private methods do not override
+    private void deri2() {
+        System.out.println("X deri2()");
+    }
+
+    // final methods cannot be overriden
+    final void deri3() {
+        System.out.println("X deri3");
+    }
+
+    // it will be hidden in child
+    static void deri4() {
+        System.out.println("X deri4()");
+    }
+
+    // abstract method, should be overriden in child class
+    abstract void deri5();
+}
+
+class Y extends X {
+
+    
+
+  
+  void deri() {
+        System.out.println("Y deri()");
+    }
+
+    
+    private void deri2() {
+        System.out.println("Y deri2()");
+    }
+
+    // it weill produce error as final method can't overriden
+    // void deri3(){
+    // error
+    // }
+
+    // static method cna't be overriden
+    static void deri4() {
+        System.out.println("Y deri4()");
+    }
+
+    void deri5() {
+        System.out.println("Y deri5()");
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        X obj = new Y();
+
+        obj.deri();
+
+        // boj.deri2(); //error as private methods can't be overriden
+        obj.deri3();
+        obj.deri4(); // static method cannot be overrden
+
+        obj.deri5(); // abstract method must be overrriden
+    }
+}
